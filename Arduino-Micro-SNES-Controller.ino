@@ -1,10 +1,11 @@
 //#include <Joystick2.h>
 #include "HID-Project.h"
-/** Creator: Anthony Burkholder
- ** Date: Sept 24, 2016
- ** Project: USBSNES Controller
- ** Version: 0.0.1
- **/
+/* (c) Stuart Teasdale 2020 
+ *  See LICENSE for distribution terms
+ *  
+ *  SNES access code derived from https://github.com/burks10/Arduino-SNES-Controller
+ Creator: Anthony Burkholder
+*/
 
 /** PINS **/
 int DATA_CLOCK    = 2;
@@ -27,7 +28,7 @@ enum snes_controller {
   SNES_L,
   SNES_R
 };
-int button_order[8] = {SNES_A,SNES_B,SNES_X,SNES_Y,SNES_L,SNES_R,SNES_START,SNES_SELECT}; 
+int button_order[8] = {SNES_A,SNES_B,SNES_X,SNES_Y,SNES_L,SNES_R,SNES_SELECT,SNES_START}; 
 void setup () {
 //  Joystick[0].begin();
 //Serial.begin(115200);
@@ -119,5 +120,5 @@ uint8_t codeDPad( int u, int d, int l, int r ) {
     return GAMEPAD_DPAD_RIGHT;
   }
   
-  return -127;
+  return GAMEPAD_DPAD_CENTERED;
 }
