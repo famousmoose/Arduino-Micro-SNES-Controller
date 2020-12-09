@@ -1,5 +1,6 @@
 //#include <Joystick2.h>
 #include "HID-Project.h"
+#include "SNESPad/SNESpad.h"
 /* (c) Stuart Teasdale 2020 
  *  See LICENSE for distribution terms
  *  
@@ -32,8 +33,8 @@ int button_order[8] = {SNES_A,SNES_B,SNES_X,SNES_Y,SNES_L,SNES_R,SNES_SELECT,SNE
 void setup () {
 //  Joystick[0].begin();
 //Serial.begin(115200);
-  Gamepad.begin();
-  Gamepad.releaseAll();
+  SNESpad.begin();
+  SNESpad.releaseAll();
   setupPins ();
 }
 
@@ -88,9 +89,9 @@ void RXTXControllerData () {
     b |= (buttons[button_order[i]] << i);
   }
   /** Set Joystick state based on SNES input **/
-  Gamepad.dPad1(dpad);
-  Gamepad.buttons(b);
-  Gamepad.write();
+  SNESpad.dPad1(dpad);
+  SNESpad.buttons(b);
+  SNESpad.write();
 
 /*      
     Serial.print(dpad);
