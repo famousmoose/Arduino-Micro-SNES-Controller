@@ -1,6 +1,6 @@
 //#include <Joystick2.h>
 #include "HID-Project.h"
-#include "SNESPad/SNESpad.h"
+#include "SNESpad.h"
 /* (c) Stuart Teasdale 2020 
  *  See LICENSE for distribution terms
  *  
@@ -63,6 +63,9 @@ void RXTXControllerData () {
   /** Data store for current state of buttons **/
   int buttons[12];
   uint8_t dpad;
+  int8_t x = 0;
+  int8_t y = 0;
+
   uint32_t b;
   /** Latch for 12us **/
   digitalWrite(DATA_LATCH, HIGH);
@@ -83,13 +86,23 @@ void RXTXControllerData () {
   
   //Code the dpad
   dpad = codeDPad(buttons[SNES_UP],buttons[SNES_DOWN],buttons[SNES_LEFT],buttons[SNES_RIGHT]);
+
+  if (buttons[SNES_UP]) {y = -128;}
+  else if (buttons[SNES_DOWN]){y = 127;}
+  else {y = 0;}
+  if (buttons[SNES_RIGHT]) {x = 127;}
+  else if (buttons[SNES_LEFT]){x = -128;}
+  else {x = 0;}
+
   //Code the Buttons
   b=0;
   for (int i=0; i < 8; i++) {
     b |= (buttons[button_order[i]] << i);
   }
   /** Set Joystick state based on SNES input **/
-  SNESpad.dPad1(dpad);
+  SNESpad.xAxis(x);
+  SNESpad.yAxis(y);
+  //SNESpad.dPad1(dpad);
   SNESpad.buttons(b);
   SNESpad.write();
 

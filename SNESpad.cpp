@@ -42,16 +42,25 @@ static const uint8_t _hidMultiReportDescriptorSNESpad[] PROGMEM = {
 	0x75, 0x01,							/*   REPORT_SIZE (1) */
 	0x95, 0x08,							/*   REPORT_COUNT (8) */
 	0x81, 0x02,							/*   INPUT (Data,Var,Abs) */
-
-	/* 1 Hat Switches */
-	0x05, 0x01,							/*   USAGE_PAGE (Generic Desktop) */
-	0x09, 0x39,							/*   USAGE (Hat switch) */
-	0x09, 0x39,							/*   USAGE (Hat switch) */
-	0x15, 0x01,							/*   LOGICAL_MINIMUM (1) */
-	0x25, 0x08,							/*   LOGICAL_MAXIMUM (8) */
-	0x95, 0x01,							/*   REPORT_COUNT (2) */
-	0x75, 0x04,							/*   REPORT_SIZE (4) */
-	0x81, 0x42,							/*   INPUT (Data,Var,Abs,Null) */
+  /* 2 8bit Axis */
+  0x05, 0x01,             /*   USAGE_PAGE (Generic Desktop) */
+  0xa1, 0x00,             /*   COLLECTION (Physical) */
+  0x09, 0x30,             /*     USAGE (X) */
+  0x09, 0x31,             /*     USAGE (Y) */
+  0x15, 0x80,         /*     LOGICAL_MINIMUM (-128) */
+  0x25, 0x7F,         /*     LOGICAL_MAXIMUM (127) */
+  0x75, 0x08,             /*     REPORT_SIZE (8) */
+  0x95, 0x02,             /*     REPORT_COUNT (2) */
+  0x81, 0x02,             /*     INPUT (Data,Var,Abs) */
+  0xc0,                /*   END_COLLECTION */
+	/* 2 Hat Switches */
+//	0x05, 0x01,							/*   USAGE_PAGE (Generic Desktop) */
+//	0x09, 0x39,							/*   USAGE (Hat switch) */
+//	0x15, 0x01,							/*   LOGICAL_MINIMUM (1) */
+//	0x25, 0x08,							/*   LOGICAL_MAXIMUM (8) */
+//	0x95, 0x02,							/*   REPORT_COUNT (2) */
+//	0x75, 0x04,							/*   REPORT_SIZE (4) */
+//	0x81, 0x42,							/*   INPUT (Data,Var,Abs,Null) */
 	0xc0								/* END_COLLECTION */
 };
 

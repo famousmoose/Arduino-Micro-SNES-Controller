@@ -62,17 +62,17 @@ void SNESpadAPI::buttons(uint8_t b){
 	_report.buttons = b; 
 }
 
-/*
-void SNESpadAPI::xAxis(int16_t a){ 
+
+void SNESpadAPI::xAxis(int8_t a){
 	_report.xAxis = a; 
 }
 
 
-void SNESpadAPI::yAxis(int16_t a){ 
+void SNESpadAPI::yAxis(int8_t a){
 	_report.yAxis = a; 
 }
 
-
+/*
 void SNESpadAPI::zAxis(int8_t a){ 
 	_report.zAxis = a; 
 }
@@ -92,10 +92,7 @@ void SNESpadAPI::rzAxis(int8_t a){
 	_report.rzAxis = a; 
 }
 */
-
+/*
 void SNESpadAPI::dPad1(int8_t d){ 
 	_report.dPad1 = d; 
-}
-
-
-
+}*/
