@@ -76,8 +76,8 @@ public:
 
 	inline void buttons(uint8_t b);
 
-  inline void xAxis(int8_t a);
-  inline void yAxis(int8_t a);
+  inline void xAxis(uint8_t a);
+  inline void yAxis(uint8_t a);
 
 	//inline void dPad1(int8_t d);
 

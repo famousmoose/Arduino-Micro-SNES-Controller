@@ -63,8 +63,8 @@ void RXTXControllerData () {
   /** Data store for current state of buttons **/
   int buttons[12];
   uint8_t dpad;
-  int8_t x = 0;
-  int8_t y = 0;
+  static uint8_t x = 127;
+  static uint8_t y = 127;
 
   uint32_t b;
   /** Latch for 12us **/
@@ -87,12 +87,12 @@ void RXTXControllerData () {
   //Code the dpad
   dpad = codeDPad(buttons[SNES_UP],buttons[SNES_DOWN],buttons[SNES_LEFT],buttons[SNES_RIGHT]);
 
-  if (buttons[SNES_UP]) {y = -128;}
-  else if (buttons[SNES_DOWN]){y = 127;}
-  else {y = 0;}
-  if (buttons[SNES_RIGHT]) {x = 127;}
-  else if (buttons[SNES_LEFT]){x = -128;}
-  else {x = 0;}
+  if (buttons[SNES_UP]) {y = 0;}
+  else if (buttons[SNES_DOWN]){y = 255;}
+  else {y = 127;}
+  if (buttons[SNES_RIGHT]) {x = 255;}
+  else if (buttons[SNES_LEFT]){x = 0;}
+  else {x = 127;}
 
   //Code the Buttons
   b=0;

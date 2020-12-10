@@ -47,8 +47,10 @@ static const uint8_t _hidMultiReportDescriptorSNESpad[] PROGMEM = {
   0xa1, 0x00,             /*   COLLECTION (Physical) */
   0x09, 0x30,             /*     USAGE (X) */
   0x09, 0x31,             /*     USAGE (Y) */
-  0x15, 0x80,         /*     LOGICAL_MINIMUM (-128) */
-  0x25, 0x7F,         /*     LOGICAL_MAXIMUM (127) */
+  0x15, 0x00,        //     Logical Minimum (0)
+  0x26, 0xFF, 0x00,  //     Logical Maximum (255)
+  0x35, 0x00,        //     Physical Minimum (0)
+  0x46, 0xFF, 0x00,  //     Physical Maximum (255)
   0x75, 0x08,             /*     REPORT_SIZE (8) */
   0x95, 0x02,             /*     REPORT_COUNT (2) */
   0x81, 0x02,             /*     INPUT (Data,Var,Abs) */
