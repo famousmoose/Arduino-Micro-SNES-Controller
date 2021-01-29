@@ -9,10 +9,10 @@
 */
 
 /** PINS **/
-int DATA_CLOCK    = 2;
-int DATA_LATCH    = 4;
-int DATA_SERIAL   = 6;
-
+int DATA_CLOCK    = 2; // SNES pin 2
+int DATA_LATCH    = 4; // SNES pin 3
+int DATA_SERIAL   = 6; // SNES pin 4
+bool DEBUG = false;
 
 
 enum snes_controller {
@@ -32,9 +32,11 @@ enum snes_controller {
 int button_order[8] = {SNES_A,SNES_B,SNES_X,SNES_Y,SNES_L,SNES_R,SNES_SELECT,SNES_START}; 
 void setup () {
 //  Joystick[0].begin();
-//Serial.begin(115200);
-  SNESpad.begin();
-  SNESpad.releaseAll();
+  if (DEBUG) {Serial.begin(115200);
+  } else {
+    SNESpad.begin();
+    SNESpad.releaseAll();
+  }
   setupPins ();
 }
 
@@ -52,10 +54,8 @@ void setupPins () {
   pinMode (DATA_LATCH, OUTPUT);
   digitalWrite (DATA_LATCH, LOW);
 
-  /** Set DATA_SERIAL normally HIGH **/
-  pinMode (DATA_SERIAL, OUTPUT);
-  digitalWrite (DATA_SERIAL, HIGH);
-  pinMode (DATA_SERIAL, INPUT);  
+  /** Set DATA_SERIAL normally HIGH, use pullup mode **/
+  pinMode (DATA_SERIAL, INPUT_PULLUP);
 }
 
 void RXTXControllerData () {
@@ -99,24 +99,27 @@ void RXTXControllerData () {
   for (int i=0; i < 8; i++) {
     b |= (buttons[button_order[i]] << i);
   }
-  /** Set Joystick state based on SNES input **/
-  SNESpad.xAxis(x);
-  SNESpad.yAxis(y);
-  //SNESpad.dPad1(dpad);
-  SNESpad.buttons(b);
-  SNESpad.write();
 
-/*      
+  if (DEBUG){
     Serial.print(dpad);
     Serial.print('|');
     Serial.print(b);
     Serial.print('|');  
-  for (int i = 0; i <= 11; i++) {
+    for (int i = 0; i <= 11; i++) {
 
-    Serial.print(buttons[i]);
-    Serial.print(' ');
+      Serial.print(buttons[i]);
+      Serial.print(' ');
+    }
+    Serial.println();
+  } else {
+      /** Set Joystick state based on SNES input **/
+    SNESpad.xAxis(x);
+    SNESpad.yAxis(y);
+    //SNESpad.dPad1(dpad);
+    SNESpad.buttons(b);
+    SNESpad.write();
+
   }
-  Serial.println(); */
 }
 
 uint8_t codeDPad( int u, int d, int l, int r ) {
