@@ -9,9 +9,11 @@
 */
 
 /** PINS **/
-int DATA_CLOCK    = 2; // SNES pin 2
-int DATA_LATCH    = 4; // SNES pin 3
-int DATA_SERIAL   = 6; // SNES pin 4
+// SNES Pin 1 5V
+int DATA_CLOCK    = 2; // SNES pin 2   |---------------)
+int DATA_LATCH    = 4; // SNES pin 3   | 1 2 3 4 | 5 6 7 )
+int DATA_SERIAL   = 6; // SNES pin 4   |---------------)
+//SNES Pin 7 GND
 bool DEBUG = false;
 
 
